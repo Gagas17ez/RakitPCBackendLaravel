@@ -9,7 +9,6 @@ class CreateCasingTable extends Migration
     public function up()
     {
         Schema::create('casing', function (Blueprint $table) {
-
 		$table->bigIncrements('idCasing',);
 		$table->string('NamaCasing',200);
 		$table->string('MerkCasing',200);
@@ -27,7 +26,6 @@ class CreateCasingTable extends Migration
 		$table->integer('Harga',)->nullable()->default('NULL');
 		$table->string('ImageLink',200)->nullable()->default('NULL');
 		$table->string('Links')->nullable()->default('NULL');
-
         });
     }
 
