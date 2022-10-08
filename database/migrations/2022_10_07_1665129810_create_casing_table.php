@@ -23,7 +23,7 @@ class CreateCasingTable extends Migration
 		$table->string('MaxCoolerHeight',200)->nullable()->default('NULL');
 		$table->string('MaxPSU',200)->nullable()->default('NULL');
 		$table->string('CasingSidePanel',200)->nullable()->default('NULL');
-		$table->integer('Harga',)->nullable()->default('NULL');
+		$table->integer('Harga')->nullable()->default('0');
 		$table->string('ImageLink',200)->nullable()->default('NULL');
 		$table->string('Links')->nullable()->default('NULL');
         });

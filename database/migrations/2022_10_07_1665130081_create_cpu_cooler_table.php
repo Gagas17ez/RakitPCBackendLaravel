@@ -10,7 +10,7 @@ class CreateCpuCoolerTable extends Migration
     {
         Schema::create('cpu_cooler', function (Blueprint $table) {
 
-		$table->bigIncrements('idCooler',);
+		$table->bigIncrements('idCooler');
 		$table->string('NamaCooler',200);
 		$table->string('MerkCooler',200);
 		$table->string('TypeCooler',200);
@@ -21,7 +21,7 @@ class CreateCpuCoolerTable extends Migration
 		$table->string('PowerCooler',200)->nullable()->default('NULL');
 		$table->string('ColorCooler',200)->nullable()->default('NULL');
 		$table->string('RGB',200)->nullable()->default('NULL');
-		$table->integer('Harga',)->nullable()->default('NULL');
+		$table->integer('Harga')->nullable()->default('0');
 		$table->string('ImageLink',200)->nullable()->default('NULL');
 		$table->string('Links')->nullable()->default('NULL');
 

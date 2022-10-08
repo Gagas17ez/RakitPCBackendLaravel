@@ -10,7 +10,7 @@ class CreateMotherboardTable extends Migration
     {
         Schema::create('motherboard', function (Blueprint $table) {
 
-		$table->bigIncrements('idMotherboard',);
+		$table->bigIncrements('idMotherboard');
 		$table->string('NamaMobo',150);
 		$table->string('MerkMobo',150);
 		$table->string('FormFactor',150);
@@ -29,7 +29,7 @@ class CreateMotherboardTable extends Migration
 		$table->string('ImageLink',150)->nullable()->default('NULL');
 		$table->string('Warna',150)->nullable()->default('NULL');
 		$table->string('RGB',150)->nullable()->default('NULL');
-		$table->integer('Harga',)->nullable()->default('NULL');
+		$table->integer('Harga')->nullable()->default('0');
 		$table->string('Links')->nullable()->default('NULL');
 
         });
