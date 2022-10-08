@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CasingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('Casing',[CasingController::class,'getCasing']);
+Route::post('Casing/Detail',[CasingController::class,'getCasingDetail']);
+Route::get('Casing/{id}',[CasingController::class,'showCasingID']);
