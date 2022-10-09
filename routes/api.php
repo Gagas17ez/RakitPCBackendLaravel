@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CasingController;
 use App\Http\Controllers\CpuController;
 use App\Http\Controllers\CpuCoolerController;
+use App\Http\Controllers\MotherboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,7 @@ Route::get('Cpu/{id}',[CpuController::class,'getCpuID']);
 Route::get('CpuCooler/all',[CpuCoolerController::class,'getCpuCooler']);
 Route::post('CpuCooler/filter',[CpuCoolerController::class,'postCpuCoolerFilter']);
 Route::get('CpuCooler/{id}',[CpuCoolerController::class,'getCpuCoolerID']);
+
+Route::get('Motherboard/all',[MotherboardController::class,'getMobo']);
+Route::post('Motherboardr/filter',[MotherboardController::class,'postMoboFilter']);
+Route::get('Motherboard/{id}',[MotherboardController::class,'getMoboID']);
