@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CasingController;
+use App\Http\Controllers\CpuController;
+use App\Http\Controllers\CpuCoolerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('Casing',[CasingController::class,'getCasing']);
-Route::post('Casing/Detail',[CasingController::class,'getCasingDetail']);
-Route::get('Casing/{id}',[CasingController::class,'showCasingID']);
+Route::get('Casing/all',[CasingController::class,'getCasing']);
+Route::post('Casing/filter',[CasingController::class,'postCasingFilter']);
+Route::get('Casing/{id}',[CasingController::class,'getCasingID']);
+
+Route::get('Cpu/all',[CpuController::class,'getCpu']);
+Route::post('Cpu/filter',[CpuController::class,'postCpuFilter']);
+Route::get('Cpu/{id}',[CpuController::class,'getCpuID']);
+
+Route::get('CpuCooler/all',[CpuCoolerController::class,'getCpuCooler']);
+Route::post('CpuCooler/filter',[CpuCoolerController::class,'postCpuCoolerFilter']);
+Route::get('CpuCooler/{id}',[CpuCoolerController::class,'getCpuCoolerID']);

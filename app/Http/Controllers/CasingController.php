@@ -12,14 +12,14 @@ class CasingController extends Controller
         return $hasil;
     }
 
-    public function showCasingID($id){
+    public function getCasingID($id){
         $hasil =  casing::select("*")
                         ->where('idCasing', $id)
                         ->get();
         return $hasil;
     }
 
-    public function getCasingDetail(Request $Request){
+    public function postCasingFilter(Request $Request){
         if ($Request->Request == "AZ"){
             $Return = casing::select("*")
                         ->orderBy("NamaCasing")
