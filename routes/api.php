@@ -6,6 +6,7 @@ use App\Http\Controllers\CasingController;
 use App\Http\Controllers\CpuController;
 use App\Http\Controllers\CpuCoolerController;
 use App\Http\Controllers\MotherboardController;
+use App\Http\Controllers\PowerSupplyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +36,9 @@ Route::post('CpuCooler/filter',[CpuCoolerController::class,'postCpuCoolerFilter'
 Route::get('CpuCooler/{id}',[CpuCoolerController::class,'getCpuCoolerID']);
 
 Route::get('Motherboard/all',[MotherboardController::class,'getMobo']);
-Route::post('Motherboardr/filter',[MotherboardController::class,'postMoboFilter']);
+Route::post('Motherboard/filter',[MotherboardController::class,'postMoboFilter']);
 Route::get('Motherboard/{id}',[MotherboardController::class,'getMoboID']);
+
+Route::get('Psu/all',[PowerSupplyController::class,'getPowerSupply']);
+Route::post('Psu/filter',[PowerSupplyController::class,'postPowerSupplyFilter']);
+Route::get('Psu/{id}',[PowerSupplyController::class,'getPowerSupplyID']);

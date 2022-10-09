@@ -40,6 +40,24 @@ class FanController extends Controller
                         ->orderByDesc("Harga")
                         ->get();
           }
+          elseif ($Request == "Big") {
+            $Return = fan::select("*")
+                        ->orderByDesc("SizeFans")
+                        ->get();
+        }
+        elseif ($Request == "Small") {
+            $Return = fan::select("*")
+                        ->orderBy("SizeFans")
+                        ->get();
+        }
+        elseif ($Request == "RGB") {
+            $Return = fan::select("*")
+                        ->where('RGB','like','%YES%')
+                        ->get(); 
+        }
+        else {
+            $sql = "SELECT * from fan";
+        }
          
           return $Return;
     }
