@@ -56,7 +56,7 @@ class CpuController extends Controller
                         ->get();
           }
           elseif ($Request->Request == "Unlocked") {
-            $Return = casing::select("*")
+            $Return = cpu::select("*")
                         ->where('Unlocked','like','%yes%')
                         ->get();
           }

@@ -35,12 +35,12 @@ class StorageController extends Controller
                         ->orderBy("Harga")
                         ->get();
           }
-          elseif (($Request->Request) == "SSD") {
+          elseif ($Request->Request == "SSD") {
             $Return = storage::select("*")
                         ->where('TypeStorage','like','%ssd%')
                         ->get(); 
           }
-          elseif (($Request->Request) == "HDD") {
+          elseif ($Request->Request == "HDD") {
             $Return = storage::select("*")
                         ->where('TypeStorage','like','%hdd%')
                         ->get(); 

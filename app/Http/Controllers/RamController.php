@@ -35,31 +35,34 @@ class RamController extends Controller
                         ->orderBy("Harga")
                         ->get();
           }
-          elseif (($Request->Request) == "Mahal") {
+          elseif ($Request->Request == "Mahal") {
             $Return = Ram::select("*")
                         ->orderByDesc("Harga")
                         ->get();
           }
-          elseif (($Request->Request) == "MemoryTinggi") {
+          elseif ($Request->Request == "MemoryTinggi") {
             $Return = Ram::select("*")
                         ->orderByDesc("MemorySize")
                         ->get();
           }
-          elseif (($Request->Request) == "MemoryRendah") {
+          elseif ($Request->Request == "MemoryRendah") {
             $Return = Ram::select("*")
                         ->orderBy("MemorySize")
                         ->get();
           }
-          elseif (($Request->Request) == "SpeedTinggi") {
+          elseif ($Request->Request == "SpeedTinggi") {
             $Return = Ram::select("*")
                         ->orderByDesc("MemorySpeed")
                         ->get();
           }
-          elseif (($Request->Request) == "SpeedRendah") {
+          elseif ($Request->Request == "SpeedRendah") {
             $Return = Ram::select("*")
                         ->orderBy("MemorySpeed")
                         ->get();
+          }else {
+            $hasil = ram::all();
           }
+          
           return $Return;
     }
 }

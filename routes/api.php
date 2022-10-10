@@ -11,6 +11,7 @@ use App\Http\Controllers\RamController;
 use App\Http\Controllers\StorageController;
 use App\Http\Controllers\VgaController;
 use App\Http\Controllers\BuildsController;
+use App\Http\Controllers\FanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,10 @@ Route::get('Cpu/{id}',[CpuController::class,'getCpuID']);
 Route::get('CpuCooler/All',[CpuCoolerController::class,'getCpuCooler']);
 Route::post('CpuCooler/Filter',[CpuCoolerController::class,'postCpuCoolerFilter']);
 Route::get('CpuCooler/{id}',[CpuCoolerController::class,'getCpuCoolerID']);
+
+Route::get('Fan/All',[FanController::class,'getFan']);
+Route::post('Fan/Filter',[FanController::class,'postFanFilter']);
+Route::get('Fan/{id}',[FanController::class,'getFanID']);
 
 Route::get('Motherboard/All',[MotherboardController::class,'getMobo']);
 Route::post('Motherboard/Filter',[MotherboardController::class,'postMoboFilter']);
