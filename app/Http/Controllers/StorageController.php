@@ -45,7 +45,7 @@ class StorageController extends Controller
                         ->where('TypeStorage','like','%hdd%')
                         ->get(); 
           }
-          elseif (($Request->Request) == "NVME") {
+          elseif ($Request->Request == "NVME") {
             $Return = storage::select("*")
                         ->where('TypeStorage','like','%nvme%')
                         ->get(); 
