@@ -7,6 +7,10 @@ use App\Http\Controllers\CpuController;
 use App\Http\Controllers\CpuCoolerController;
 use App\Http\Controllers\MotherboardController;
 use App\Http\Controllers\PowerSupplyController;
+use App\Http\Controllers\RamController;
+use App\Http\Controllers\StorageController;
+use App\Http\Controllers\VgaController;
+use App\Http\Controllers\BuildsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,22 +27,37 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('Casing/all',[CasingController::class,'getCasing']);
-Route::post('Casing/filter',[CasingController::class,'postCasingFilter']);
+Route::get('Casing/All',[CasingController::class,'getCasing']);
+Route::post('Casing/Filter',[CasingController::class,'postCasingFilter']);
 Route::get('Casing/{id}',[CasingController::class,'getCasingID']);
 
-Route::get('Cpu/all',[CpuController::class,'getCpu']);
-Route::post('Cpu/filter',[CpuController::class,'postCpuFilter']);
+Route::get('Cpu/All',[CpuController::class,'getCpu']);
+Route::post('Cpu/Filter',[CpuController::class,'postCpuFilter']);
 Route::get('Cpu/{id}',[CpuController::class,'getCpuID']);
 
-Route::get('CpuCooler/all',[CpuCoolerController::class,'getCpuCooler']);
-Route::post('CpuCooler/filter',[CpuCoolerController::class,'postCpuCoolerFilter']);
+Route::get('CpuCooler/All',[CpuCoolerController::class,'getCpuCooler']);
+Route::post('CpuCooler/Filter',[CpuCoolerController::class,'postCpuCoolerFilter']);
 Route::get('CpuCooler/{id}',[CpuCoolerController::class,'getCpuCoolerID']);
 
-Route::get('Motherboard/all',[MotherboardController::class,'getMobo']);
-Route::post('Motherboard/filter',[MotherboardController::class,'postMoboFilter']);
+Route::get('Motherboard/All',[MotherboardController::class,'getMobo']);
+Route::post('Motherboard/Filter',[MotherboardController::class,'postMoboFilter']);
 Route::get('Motherboard/{id}',[MotherboardController::class,'getMoboID']);
 
-Route::get('Psu/all',[PowerSupplyController::class,'getPowerSupply']);
-Route::post('Psu/filter',[PowerSupplyController::class,'postPowerSupplyFilter']);
+Route::get('Psu/All',[PowerSupplyController::class,'getPowerSupply']);
+Route::post('Psu/Filter',[PowerSupplyController::class,'postPowerSupplyFilter']);
 Route::get('Psu/{id}',[PowerSupplyController::class,'getPowerSupplyID']);
+
+Route::get('Ram/All',[RamController::class,'getRam']);
+Route::post('Ram/Filter',[RamController::class,'postRamFilter']);
+Route::get('Ram/{id}',[RamController::class,'getRamID']);
+
+Route::get('Storage/All',[StorageController::class,'getStorage']);
+Route::post('Storage/Filter',[StorageController::class,'postStorageFilter']);
+Route::get('Storage/{id}',[StorageController::class,'getStorageID']);
+
+Route::get('Vga/All',[VgaController::class,'getVga']);
+Route::post('Vga/Filter',[VgaController::class,'postVgaFilter']);
+Route::get('Vga/{id}',[VgaController::class,'getVgaID']);
+
+Route::get('Builds/All',[BuildsController::class,'getBuilds']);
+Route::get('Builds/{id}',[BuildsController::class,'getBuildsID']);
