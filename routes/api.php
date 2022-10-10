@@ -66,3 +66,4 @@ Route::get('Vga/{id}',[VgaController::class,'getVgaID']);
 
 Route::get('Builds/All',[BuildsController::class,'getBuilds']);
 Route::get('Builds/{id}',[BuildsController::class,'getBuildsID']);
+Route::post('Builds/Detail',[BuildsController::class,'getBuildsDetail']);

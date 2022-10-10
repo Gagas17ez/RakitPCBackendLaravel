@@ -18,4 +18,14 @@ class BuildsController extends Controller
                         ->get();
         return $hasil;
     }
+
+    public function getBuildsDetail(Request $Request){
+        $hasil =  builds::select("*")
+                        ->where('KebutuhanBuilds', $Request->Kebutuhan)
+                        ->where('BudgetBuilds', $Request->Budget)
+                        ->where('KebutuhanStorage', $Request->Storage)
+                        ->get();
+        return $hasil;
+    }
+    
 }
