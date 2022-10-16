@@ -60,7 +60,7 @@ class RamController extends Controller
                         ->orderBy("MemorySpeed")
                         ->get();
           }else {
-            $hasil = ram::all();
+            $Return = ram::all();
           }
           
           return $Return;

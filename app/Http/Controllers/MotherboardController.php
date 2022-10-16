@@ -71,7 +71,7 @@ class MotherboardController extends Controller
             ->get(); 
         }
         else {
-            $hasil = motherboard::all();
+            $Return = motherboard::all();
         }
          
           return $Return;

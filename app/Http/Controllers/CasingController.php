@@ -55,8 +55,7 @@ class CasingController extends Controller
                         ->where('MoboCompatible','like','%micro%')
                         ->get();
           }else{
-            $Return = casing::all()
-                        -> get();
+            $Return = casing::all();
           }
         return $Return;
     }

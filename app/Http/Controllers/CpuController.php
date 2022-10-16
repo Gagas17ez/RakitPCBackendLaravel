@@ -61,7 +61,7 @@ class CpuController extends Controller
                         ->get();
           }
           else {
-            return cpu::all();
+            $Return = cpu::all();
           }
           return $Return;
     }
