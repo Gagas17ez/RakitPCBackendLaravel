@@ -12,6 +12,7 @@ use App\Http\Controllers\StorageController;
 use App\Http\Controllers\VgaController;
 use App\Http\Controllers\BuildsController;
 use App\Http\Controllers\FanController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,3 +68,7 @@ Route::get('Vga/{id}',[VgaController::class,'getVgaID']);
 Route::get('Builds/All',[BuildsController::class,'getBuilds']);
 Route::get('Builds/{id}',[BuildsController::class,'getBuildsID']);
 Route::post('Builds/Detail',[BuildsController::class,'getBuildsDetail']);
+
+Route::post('upload',[PostController::class,'saveData']);
+Route::get('list',[PostController::class,'getData']);
+Route::get('delete/{id}',[PostController::class,'deleteData']);
