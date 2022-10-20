@@ -18,6 +18,7 @@ class CreateMonitorTable extends Migration
 		$table->string('MonitorPort',200);
 		$table->integer('MonitorSize');
 		$table->string('Ultrawide',200);
+		$table->string('PanelType',200);
 		$table->string('HDR',200);
 		$table->string('ScreenTechnology');
 		$table->integer('Harga');

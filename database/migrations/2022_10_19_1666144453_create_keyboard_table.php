@@ -21,7 +21,6 @@ class CreateKeyboardTable extends Migration
 		$table->string('KeyboardColor',200);
 		$table->integer('Harga');
 		$table->string('Links',200);
-
         });
     }
 

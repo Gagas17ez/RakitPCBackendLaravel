@@ -13,6 +13,7 @@ use App\Http\Controllers\VgaController;
 use App\Http\Controllers\BuildsController;
 use App\Http\Controllers\FanController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\MonitorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,3 +73,7 @@ Route::post('Builds/Detail',[BuildsController::class,'getBuildsDetail']);
 Route::post('upload',[PostController::class,'saveData']);
 Route::get('list',[PostController::class,'getData']);
 Route::get('delete/{id}',[PostController::class,'deleteData']);
+
+Route::get('Monitor/All',[MonitorController::class,'getMonitor']);
+Route::post('Monitor/Filter',[MonitorController::class,'PostMonitorFilter']);
+Route::get('Monitor/{id}',[MonitorController::class,'getMonitorID']);

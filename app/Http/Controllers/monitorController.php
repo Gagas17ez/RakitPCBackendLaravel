@@ -55,11 +55,39 @@ class monitorController extends Controller
                         ->where('MonitorResolusi','like','%2160%')
                         ->get();
          }
-       
-        else {
+         elseif ($Request->Request == "HertzTinggi") {
+          $Return = monitor::select("*")
+                      ->orderByDesc("MonitorRefreshRate")
+                      ->get();
+         }
+         elseif ($Request->Request == "HertzRendah") {
+          $Return = monitor::select("*")
+                      ->orderBy("MonitorRefreshRate")
+                      ->get();
+         }
+         elseif ($Request->Request == "Ultrawide") {
+          $Return = monitor::select("*")
+                        ->where('Ultrawide','like','%yes%')
+                        ->get();
+         }
+         elseif ($Request->Request == "HDR") {
+          $Return = monitor::select("*")
+                        ->where('HDR','like','%hdr%')
+                        ->get();
+         }
+         elseif ($Request->Request == "FreeSync") {
+          $Return = monitor::select("*")
+                        ->where('ScreenTechnology','like','%free%')
+                        ->get();
+         }
+         elseif ($Request->Request == "GSYNC") {
+          $Return = monitor::select("*")
+                        ->where('ScreenTechnology','like','%gsync%')
+                        ->get();
+         }
+         else {
             $hasil = monitor::all();
-        }
-         
+         }
           return $Return;
     }
 }
