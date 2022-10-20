@@ -12,6 +12,8 @@ use App\Http\Controllers\StorageController;
 use App\Http\Controllers\VgaController;
 use App\Http\Controllers\BuildsController;
 use App\Http\Controllers\FanController;
+use App\Http\Controllers\MonitorController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -67,3 +69,7 @@ Route::get('Vga/{id}',[VgaController::class,'getVgaID']);
 Route::get('Builds/All',[BuildsController::class,'getBuilds']);
 Route::get('Builds/{id}',[BuildsController::class,'getBuildsID']);
 Route::post('Builds/Detail',[BuildsController::class,'getBuildsDetail']);
+
+Route::get('Monitor/All',[MonitorController::class,'getMonitor']);
+Route::post('Monitor/Filter',[MonitorController::class,'PostMonitorFilter']);
+Route::get('Monitor/{id}',[MonitorController::class,'getMonitorID']);
