@@ -30,6 +30,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware(['cors'])->group(function () {
+    Route::post('upload',[PostController::class,'saveData']);
+    Route::get('list',[PostController::class,'getData']);
+    Route::get('delete/{id}',[PostController::class,'deleteData']);
+});
+
 Route::get('Casing/All',[CasingController::class,'getCasing']);
 Route::post('Casing/Filter',[CasingController::class,'postCasingFilter']);
 Route::get('Casing/{id}',[CasingController::class,'getCasingID']);
@@ -69,10 +75,6 @@ Route::get('Vga/{id}',[VgaController::class,'getVgaID']);
 Route::get('Builds/All',[BuildsController::class,'getBuilds']);
 Route::get('Builds/{id}',[BuildsController::class,'getBuildsID']);
 Route::post('Builds/Detail',[BuildsController::class,'getBuildsDetail']);
-
-Route::post('upload',[PostController::class,'saveData']);
-Route::get('list',[PostController::class,'getData']);
-Route::get('delete/{id}',[PostController::class,'deleteData']);
 
 Route::get('Monitor/All',[MonitorController::class,'getMonitor']);
 Route::post('Monitor/Filter',[MonitorController::class,'PostMonitorFilter']);
