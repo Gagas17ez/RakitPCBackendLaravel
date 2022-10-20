@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\monitor;
 
-class monitorController extends Controller
+class MonitorController extends Controller
 {
     public function getMonitor(){
         $hasil = monitor::all();

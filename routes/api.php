@@ -13,6 +13,8 @@ use App\Http\Controllers\VgaController;
 use App\Http\Controllers\BuildsController;
 use App\Http\Controllers\FanController;
 use App\Http\Controllers\MonitorController;
+use App\Http\Controllers\keyboardController;
+use App\Http\Controllers\MouseController;
 
 
 /*
@@ -73,3 +75,11 @@ Route::post('Builds/Detail',[BuildsController::class,'getBuildsDetail']);
 Route::get('Monitor/All',[MonitorController::class,'getMonitor']);
 Route::post('Monitor/Filter',[MonitorController::class,'PostMonitorFilter']);
 Route::get('Monitor/{id}',[MonitorController::class,'getMonitorID']);
+
+Route::get('Keyboard/All',[KeyboardController::class,'getKeyboard']);
+Route::post('Keyboard/Filter',[KeyboardController::class,'PostKeyboardFilter']);
+Route::get('Keyboard/{id}',[KeyboardController::class,'getKeyboardID']);
+
+Route::get('Mouse/All',[MouseController::class,'getMouse']);
+Route::post('Mouse/Filter',[MouseController::class,'PostMouseFilter']);
+Route::get('Mouse/{id}',[MouseController::class,'getMouseID']);

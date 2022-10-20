@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\mouse;
 
-class mouseController extends Controller
+class MouseController extends Controller
 {
     public function getMouse(){
         $hasil = mouse::all();
@@ -47,14 +47,14 @@ class mouseController extends Controller
          }
          elseif ($Request->Request == "ButtonTerbanyak") {
             $Return = mouse::select("*")
-                        ->orderByDesc("TotalButton	")
+                        ->orderByDesc("TotalButton")
                         ->get();
          }
          elseif ($Request->Request == "Teringan") {
             $Return = mouse::select("*")
                         ->orderBy("Weight")
                         ->get();
-           }
+         }
          elseif ($Request->Request == "Wireless") {
             $Return = mouse::select("*")
                         ->where('Wireless','like','%yes%')

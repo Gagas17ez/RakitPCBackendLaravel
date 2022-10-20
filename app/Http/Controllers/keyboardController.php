@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\keyboard;
 
-class keyboardController extends Controller
+class KeyboardController extends Controller
 {
     public function getKeyboard(){
         $hasil = keyboard::all();
@@ -70,14 +70,14 @@ class keyboardController extends Controller
                         ->where('Wireless','like','%yes%')
                         ->get();
          }
-         elseif ($Request->Request == "FullKeyboard") {
+         elseif ($Request->Request == "Full") {
             $Return = keyboard::select("*")
                         ->where('KeyboardType','like','%full%')
                         ->get();
          }
          elseif ($Request->Request == "TKL") {
             $Return = keyboard::select("*")
-                        ->where('KeyboardType','like','%tkl%')
+                        ->where('KeyboardType','like','%tenkey%')
                         ->get();
          }
          elseif ($Request->Request == "80") {
@@ -85,8 +85,13 @@ class keyboardController extends Controller
                         ->where('KeyboardType','like','%80%')
                         ->get();
          }
+         elseif ($Request->Request == "65") {
+            $Return = keyboard::select("*")
+                        ->where('KeyboardType','like','%65%')
+                        ->get();
+         }
          else {
-            $hasil = keyboard::all();
+            $Return = keyboard::all();
          }
           return $Return;
     }
