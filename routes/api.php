@@ -31,6 +31,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware(['cors'])->group(function () {
+    Route::get('Monitor/All',[MonitorController::class,'getMonitor']);
     Route::post('/upload',[PostController::class,'saveData']);
     Route::get('/list',[PostController::class,'getData']);
     Route::get('/delete/{id}',[PostController::class,'deleteData']);
@@ -76,6 +77,6 @@ Route::get('Builds/All',[BuildsController::class,'getBuilds']);
 Route::get('Builds/{id}',[BuildsController::class,'getBuildsID']);
 Route::post('Builds/Detail',[BuildsController::class,'getBuildsDetail']);
 
-Route::get('Monitor/All',[MonitorController::class,'getMonitor']);
+
 Route::post('Monitor/Filter',[MonitorController::class,'PostMonitorFilter']);
 Route::get('Monitor/{id}',[MonitorController::class,'getMonitorID']);

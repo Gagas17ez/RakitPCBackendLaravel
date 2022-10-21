@@ -14,13 +14,13 @@ class PostController extends Controller
     function saveData(Request $request)
     {
       $idPost = $request->input('idPost');
-      $judul = $request->input('judulPost');
-      $isi = $request->input('isi');
-      $idPengepost = $request->input('idPengepost');
-      $namaPengepost = $request->input('namaPengepost');
+      $judul = $request->input('JudulPost');
+      $isi = $request->input('IsiPost');
+      $idPengepost = $request->input('IdPengepost');
+      $namaPengepost = $request->input('NamaPengepost');
       $filepath = $request->file('file')->store('products');
        
-      DB::table('forumpost')->insert([
+      DB::table('forum_post')->insert([
             'IdPost' =>  $idPost,
             'JudulPost'=> $judul,
             'IsiPost'=> $isi ,
@@ -32,13 +32,13 @@ class PostController extends Controller
 
     function getData()
     {
-      $res =  DB::table('forumpost')->get();  
+      $res =  DB::table('forum_post')->get();  
       return Response::json($res);
     }
 
     function deleteData($id)
     {
-      $res = DB::table('forumpost')->where('IdPost', $id)->delete();
+      $res = DB::table('forum_post')->where('IdPost', $id)->delete();
       return Response::json($res);
     }
 }
