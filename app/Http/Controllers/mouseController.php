@@ -61,7 +61,7 @@ class MouseController extends Controller
                         ->get();
          }
          else {
-            $hasil = mouse::all();
+            $Return = mouse::all();
          }
           return $Return;
     }

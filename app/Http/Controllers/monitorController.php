@@ -82,7 +82,7 @@ class MonitorController extends Controller
          }
          elseif ($Request->Request == "GSYNC") {
           $Return = monitor::select("*")
-                        ->where('ScreenTechnology','like','%gsync%')
+                        ->where('ScreenTechnology','like','%g-sync%')
                         ->get();
          }
          else {
