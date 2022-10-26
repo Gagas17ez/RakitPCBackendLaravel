@@ -15,6 +15,7 @@ use App\Http\Controllers\FanController;
 use App\Http\Controllers\MonitorController;
 use App\Http\Controllers\keyboardController;
 use App\Http\Controllers\MouseController;
+use App\Http\Controllers\SimpanBuildController;
 
 
 /*
@@ -83,3 +84,5 @@ Route::get('Keyboard/{id}',[KeyboardController::class,'getKeyboardID']);
 Route::get('Mouse/All',[MouseController::class,'getMouse']);
 Route::post('Mouse/Filter',[MouseController::class,'PostMouseFilter']);
 Route::get('Mouse/{id}',[MouseController::class,'getMouseID']);
+
+Route::get('SimpanBuild/{IdUser}',[SimpanBuildController::class,'getSimpanID']);
