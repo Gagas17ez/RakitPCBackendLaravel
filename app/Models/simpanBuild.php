@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class simpanBuild extends Model
+{
+    public $timestamps=false;
+    /**
+     * @var string $table
+     */
+    protected $table = 'simpan_build';
+
+    /**
+     * @var array $fillable
+     */
+    protected $fillable = [
+        'IdUser',
+        'Compatible',
+        'Harga',
+        'Waktu',
+        'IdCasing',
+        'IdCpu',
+        'IdCpuCooler',
+        'IdMotherboard',
+        'IdPsu',
+        'IdRam1',
+        'IdRam2',
+        'IdStorage1',
+        'IdStorage2',
+        'IdVga',
+        'IdFan1',
+        'IdFan2',
+        'IdFan3',
+    ];
+
+    use HasFactory;
+}

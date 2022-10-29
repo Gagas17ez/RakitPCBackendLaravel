@@ -70,7 +70,7 @@ class StorageController extends Controller
                         ->orderByDesc("WriteSpeed")
                         ->get();
           }else {
-            $hasil = storage::all();
+            $Return = storage::all();
           }
           return $Return;
     }

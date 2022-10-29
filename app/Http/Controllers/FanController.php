@@ -56,7 +56,7 @@ class FanController extends Controller
                         ->get(); 
         }
         else {
-            $hasil = fan::all();
+            $Return = fan::all();
         }
          
           return $Return;

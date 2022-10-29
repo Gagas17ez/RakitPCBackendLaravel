@@ -61,8 +61,8 @@ class CpuCoolerController extends Controller
                         ->get(); 
          }  
          else {
-            $hasil = cpuCooler::all();
-            return $hasil;
+            $Return = cpuCooler::all();
+            
         }
           return $Return;
     }

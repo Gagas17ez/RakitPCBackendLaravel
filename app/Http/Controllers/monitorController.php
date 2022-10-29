@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\monitor;
 
-class monitorController extends Controller
+class MonitorController extends Controller
 {
     public function getMonitor(){
         $hasil = monitor::all();
@@ -82,11 +82,11 @@ class monitorController extends Controller
          }
          elseif ($Request->Request == "GSYNC") {
           $Return = monitor::select("*")
-                        ->where('ScreenTechnology','like','%gsync%')
+                        ->where('ScreenTechnology','like','%g-sync%')
                         ->get();
          }
          else {
-            $hasil = monitor::all();
+            $Return = monitor::all();
          }
           return $Return;
     }

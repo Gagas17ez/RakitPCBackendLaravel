@@ -40,6 +40,16 @@ class CpuController extends Controller
                         ->orderByDesc("Harga")
                         ->get();
           }
+          elseif ($Request->Request == "Intel") {
+            $Return = cpu::select("*")
+                        ->where('MerkCPU','like','%intel%')
+                        ->get();
+          }
+          elseif ($Request->Request == "AMD") {
+            $Return = cpu::select("*")
+                        ->where('MerkCPU','like','%amd%')
+                        ->get();
+          }
           elseif ($Request->Request == "Core") {
             $Return = cpu::select("*")
                         ->orderByDesc("CoreCount")
@@ -61,7 +71,7 @@ class CpuController extends Controller
                         ->get();
           }
           else {
-            return cpu::all();
+            $Return = cpu::all();
           }
           return $Return;
     }
