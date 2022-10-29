@@ -11,15 +11,20 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
   
-    function saveData(Request $request)
+    function postSavePost(Request $request)
     {
       $idPost = $request->input('idPost');
       $judul = $request->input('JudulPost');
       $isi = $request->input('IsiPost');
       $idPengepost = $request->input('IdPengepost');
       $namaPengepost = $request->input('NamaPengepost');
-      $filepath = $request->file('file')->store('products');
-       
+      $check = $request->file('file');
+      if ($check == 0){
+        $filepath = "0";
+      }else {
+        $filepath = $request->file('file')->store('products');
+      }
+      
       DB::table('forum_post')->insert([
             'IdPost' =>  $idPost,
             'JudulPost'=> $judul,
@@ -30,15 +35,15 @@ class PostController extends Controller
           ]); 
     }
 
-    function getData()
+    function getPost()
     {
       $res =  DB::table('forum_post')->get();  
       return Response::json($res);
     }
 
-    function deleteData($id)
+    function getPostID($id)
     {
-      $res = DB::table('forum_post')->where('IdPost', $id)->delete();
+      $res = DB::table('forum_post')->where('IdPost', $id)->get();
       return Response::json($res);
     }
 }

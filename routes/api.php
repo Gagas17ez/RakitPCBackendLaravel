@@ -35,9 +35,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware(['cors'])->group(function () {
-    Route::post('/upload',[PostController::class,'saveData']);
-    Route::get('/list',[PostController::class,'getData']);
-    Route::get('/delete/{id}',[PostController::class,'deleteData']);
+    Route::post('/upload',[PostController::class,'postSavePost']);
+    Route::get('/list',[PostController::class,'getPost']);
+    Route::get('/list/{id}',[PostController::class,'getPostID']);
 });
 
 Route::get('Casing/All',[CasingController::class,'getCasing']);
