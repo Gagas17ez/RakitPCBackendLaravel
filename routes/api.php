@@ -33,6 +33,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware(['cors'])->group(function () {
+    Route::get('Monitor/All',[MonitorController::class,'getMonitor']);
+    Route::post('/upload',[PostController::class,'saveData']);
+    Route::get('/list',[PostController::class,'getData']);
+    Route::get('/delete/{id}',[PostController::class,'deleteData']);
+});
+
 Route::get('Casing/All',[CasingController::class,'getCasing']);
 Route::post('Casing/Filter',[CasingController::class,'postCasingFilter']);
 Route::get('Casing/{id}',[CasingController::class,'getCasingID']);
