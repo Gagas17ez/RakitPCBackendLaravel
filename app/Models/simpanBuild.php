@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class simpanBuild extends Model
 {
-    public $timestamps=false;
     /**
      * @var string $table
      */
@@ -33,7 +32,7 @@ class simpanBuild extends Model
         'IdVga',
         'IdFan1',
         'IdFan2',
-        'IdFan3',
+        'IdFan3'
     ];
 
     use HasFactory;

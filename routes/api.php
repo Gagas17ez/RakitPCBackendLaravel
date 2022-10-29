@@ -16,6 +16,7 @@ use App\Http\Controllers\MonitorController;
 use App\Http\Controllers\keyboardController;
 use App\Http\Controllers\MouseController;
 use App\Http\Controllers\SimpanBuildController;
+use App\Http\Controllers\PostController;
 
 
 /*
@@ -34,7 +35,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware(['cors'])->group(function () {
-    Route::get('Monitor/All',[MonitorController::class,'getMonitor']);
     Route::post('/upload',[PostController::class,'saveData']);
     Route::get('/list',[PostController::class,'getData']);
     Route::get('/delete/{id}',[PostController::class,'deleteData']);
@@ -92,4 +92,3 @@ Route::get('Mouse/All',[MouseController::class,'getMouse']);
 Route::post('Mouse/Filter',[MouseController::class,'PostMouseFilter']);
 Route::get('Mouse/{id}',[MouseController::class,'getMouseID']);
 
-Route::get('SimpanBuild/{IdUser}',[SimpanBuildController::class,'getSimpanID']);

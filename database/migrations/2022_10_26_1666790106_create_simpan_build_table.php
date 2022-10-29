@@ -27,6 +27,7 @@ class CreateSimpanBuildTable extends Migration
 		$table->integer('IdFan1');
 		$table->integer('IdFan2');
 		$table->integer('IdFan3');
+		$table->timestamps();
         });
     }
 
