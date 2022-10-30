@@ -14,10 +14,12 @@ class PostController extends Controller
     function postSavePost(Request $request)
     {
       $idPost = $request->input('idPost');
-      $judul = $request->input('JudulPost');
-      $isi = $request->input('IsiPost');
+      $JudulPost = $request->input('JudulPost');
+      $IsiPost = $request->input('IsiPost');
       $idPengepost = $request->input('IdPengepost');
       $namaPengepost = $request->input('NamaPengepost');
+      $like = 0;
+      
       $check = $request->file('file');
       if ($check == 0){
         $filepath = "0";
@@ -27,11 +29,14 @@ class PostController extends Controller
       
       DB::table('forum_post')->insert([
             'IdPost' =>  $idPost,
-            'JudulPost'=> $judul,
-            'IsiPost'=> $isi ,
+            'JudulPost'=> $JudulPost,
+            'IsiPost'=> $IsiPost ,
             'IdPengepost'=> $idPengepost,
             'NamaPengepost'=> $namaPengepost,
-            'img_path' => $filepath
+            'img_path' => $filepath,
+            'like' => $like,
+            'created_at' =>  date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
           ]); 
     }
 
@@ -44,6 +49,12 @@ class PostController extends Controller
     function getPostID($id)
     {
       $res = DB::table('forum_post')->where('IdPost', $id)->get();
+      return Response::json($res);
+    }
+
+    function getDeletePostID($id)
+    {
+      $res = DB::table('forum_post')->where('IdPost', $id)->delete();
       return Response::json($res);
     }
 }

@@ -18,7 +18,7 @@ use App\Http\Controllers\MouseController;
 use App\Http\Controllers\SimpanBuildController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
-
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,10 +39,17 @@ Route::middleware(['cors'])->group(function () {
     Route::post('/Forum/Upload',[PostController::class,'postSavePost']);
     Route::get('/Forum/List',[PostController::class,'getPost']);
     Route::get('/Forum/List/{id}',[PostController::class,'getPostID']);
+    Route::get('/Forum/Delete/{id}',[PostController::class,'getDeletePostID']);
 
     Route::post('/Profile/Upload',[ProfileController::class,'postSaveProfile']);
     Route::get('/Profile/List',[ProfileController::class,'getProfileAll']);
     Route::get('/Profile/{id}',[ProfileController::class,'getProfileIdUser']);
+    Route::get('/Profile/Delete/{id}',[ProfileController::class,'getDeleteProfileID']);
+
+    Route::post('/Comment/Upload',[CommentController::class,'postSaveComment']);
+    Route::get('/Comment/List',[CommentController::class,'getCommentAll']);
+    Route::get('/Comment/{id}',[CommentController::class,'getCommentID']);
+    Route::get('/Comment/Delete/{id}',[CommentController::class,'getDeleteCommentID']);
 });
 
 Route::get('Casing/All',[CasingController::class,'getCasing']);

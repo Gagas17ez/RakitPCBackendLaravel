@@ -39,4 +39,10 @@ class ProfileController extends Controller
       $res = DB::table('profile')->where('IdUser', $id)->get();
       return Response::json($res);
     }
+
+    function getDeleteProfileID($id)
+    {
+      $res = DB::table('profile')->where('IdUser', $id)->delete();
+      return Response::json($res);
+    }
 }
