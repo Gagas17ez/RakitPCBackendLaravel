@@ -14,7 +14,7 @@ class CreateForumpostTable extends Migration
 		$table->string('IsiPost',200);
 		$table->integer('IdPengepost');
 		$table->string('NamaPengepost',200);
-		$table->string('img_path',200);
+		$table->string('img_path',200)->nullable()->default('0');
         });
     }
 

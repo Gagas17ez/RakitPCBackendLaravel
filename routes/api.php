@@ -17,6 +17,7 @@ use App\Http\Controllers\keyboardController;
 use App\Http\Controllers\MouseController;
 use App\Http\Controllers\SimpanBuildController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 
 
 /*
@@ -35,9 +36,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware(['cors'])->group(function () {
-    Route::post('/upload',[PostController::class,'postSavePost']);
-    Route::get('/list',[PostController::class,'getPost']);
-    Route::get('/list/{id}',[PostController::class,'getPostID']);
+    Route::post('/Forum/Upload',[PostController::class,'postSavePost']);
+    Route::get('/Forum/List',[PostController::class,'getPost']);
+    Route::get('/Forum/List/{id}',[PostController::class,'getPostID']);
+
+    Route::post('/Profile/Upload',[ProfileController::class,'postSaveProfile']);
+    Route::get('/Profile/List',[ProfileController::class,'getProfileAll']);
+    Route::get('/Profile/{id}',[ProfileController::class,'getProfileIdUser']);
 });
 
 Route::get('Casing/All',[CasingController::class,'getCasing']);
@@ -91,4 +96,5 @@ Route::get('Keyboard/{id}',[KeyboardController::class,'getKeyboardID']);
 Route::get('Mouse/All',[MouseController::class,'getMouse']);
 Route::post('Mouse/Filter',[MouseController::class,'PostMouseFilter']);
 Route::get('Mouse/{id}',[MouseController::class,'getMouseID']);
+
 
