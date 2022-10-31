@@ -15,7 +15,7 @@ class ProfileController extends Controller
       $NamaUser = $request->input('NamaUser');
       $TipeUser = $request->input('TipeUser');
       $Kelamin = $request->input('Kelamin');
-      $TglLahir = $request->input('TglLahir');
+      $Profesi = $request->input('Profesi');
       $ProfilePic_Path = $request->file('ProfilePic_Path')->store('products');
     
       DB::table('profile')->insert([
@@ -23,7 +23,7 @@ class ProfileController extends Controller
             'NamaUser'=> $NamaUser,
             'TipeUser'=> $TipeUser ,
             'Kelamin'=> $Kelamin,
-            'TglLahir'=> $TglLahir,
+            'Profesi'=> $Profesi,
             'ProfilePic_Path' => $ProfilePic_Path
           ]); 
     }
