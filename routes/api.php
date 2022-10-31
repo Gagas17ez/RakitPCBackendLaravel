@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ use App\Http\Controllers\VgaController;
 use App\Http\Controllers\BuildsController;
 use App\Http\Controllers\FanController;
 use App\Http\Controllers\MonitorController;
-use App\Http\Controllers\keyboardController;
+use App\Http\Controllers\KeyboardController;
 use App\Http\Controllers\MouseController;
 use App\Http\Controllers\SimpanBuildController;
 use App\Http\Controllers\PostController;
