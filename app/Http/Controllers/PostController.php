@@ -5,54 +5,68 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Redirect,Response,File;
+use App\Models\forumPost;
  
 use Illuminate\Support\Facades\Storage;
  
 class PostController extends Controller
 {
-  
     function postSavePost(Request $request)
     {
-      $JudulPost = $request->input('JudulPost');
-      $IsiPost = $request->input('IsiPost');
-      $idPengepost = $request->input('IdPengepost');
-      $namaPengepost = $request->input('NamaPengepost');
+      $this->validate($request, [
+        'JudulPost' => 'required|max:200',
+        'IsiPost' => 'required|max:800',
+        'IdPengepost' => 'required|max:200',
+        'NamaPengepost' => 'required|max:200',
+        'img_path' => 'required'
+      ]);
+      
       $like = 0;
-      
-      $check = $request->file('file');
+      $forumPost = new forumPost();
+      $forumPost->JudulPost = $request->JudulPost;
+      $forumPost->IsiPost = $request->IsiPost;
+      $forumPost->IdPengepost = $request->IdPengepost;
+      $forumPost->NamaPengepost = $request->NamaPengepost;
+      $forumPost->like = $like;
+
+      $check = $request->file('img_path');
       if ($check == 0){
-        $filepath = "0";
+        $forumPost->img_path = "0";
       }else {
-        $filepath = $request->file('file')->store('products');
+        $forumPost->img_path = $request->file('img_path')->store('products');
       }
-      
-      DB::table('forum_post')->insert([
-            'JudulPost'=> $JudulPost,
-            'IsiPost'=> $IsiPost ,
-            'IdPengepost'=> $idPengepost,
-            'NamaPengepost'=> $namaPengepost,
-            'img_path' => $filepath,
-            'like' => $like,
-            'created_at' =>  date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
-          ]); 
+
+      $hasil = $forumPost->save();
+      return $hasil;
     }
 
     function getPost()
     {
-      $res =  DB::table('forum_post')->get();  
-      return Response::json($res);
+      $hasil =  forumPost::all();
+      return $hasil;
     }
 
     function getPostID($id)
     {
-      $res = DB::table('forum_post')->where('IdPost', $id)->get();
-      return Response::json($res);
+      $hasil =  forumPost::select("*")
+                        ->where('IdPost', $id)
+                        ->get();
+      return $hasil;
+    }
+
+    function getPostUserID($id)
+    {
+      $hasil =  forumPost::select("*")
+                        ->where('IdUser', $id)
+                        ->get();
+      return $hasil;
     }
 
     function getDeletePostID($id)
     {
-      $res = DB::table('forum_post')->where('IdPost', $id)->delete();
-      return Response::json($res);
+      $hasil =  forumPost::select("*")
+                        ->where('IdPost', $id)
+                        ->delete();
+      return $hasil;
     }
 }

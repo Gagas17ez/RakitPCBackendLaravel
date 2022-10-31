@@ -11,38 +11,51 @@ class ProfileController extends Controller
 {
     function postSaveProfile(Request $request)
     {
-      $IdUser = $request->input('IdUser');
-      $NamaUser = $request->input('NamaUser');
-      $TipeUser = $request->input('TipeUser');
-      $Kelamin = $request->input('Kelamin');
-      $Profesi = $request->input('Profesi');
-      $ProfilePic_Path = $request->file('ProfilePic_Path')->store('products');
-    
-      DB::table('profile')->insert([
-            'IdUser' =>  $IdUser,
-            'NamaUser'=> $NamaUser,
-            'TipeUser'=> $TipeUser ,
-            'Kelamin'=> $Kelamin,
-            'Profesi'=> $Profesi,
-            'ProfilePic_Path' => $ProfilePic_Path
-          ]); 
+      $this->validate($request, [
+        'IdUser' => 'required|max:200',
+        'NamaUser' => 'required|max:800',
+        'TipeUser' => 'required|max:200',
+        'Kelamin' => 'required|max:200',
+        'Profesi' => 'required|max:200',
+        'ProfilePic_Path' => 'required'
+      ]);
+
+      $profile = new profile();
+      $profile->IdUser = $request->IdUser;
+      $profile->NamaUser = $request->NamaUser;
+      $profile->TipeUser = $request->TipeUser;
+      $profile->Kelamin = $request->Kelamin;
+      $profile->Profesi = $request->Profesi;
+      
+      $check = $request->file('ProfilePic_Path');
+      if ($check == 0){
+        $profile->ProfilePic_Path = "0";
+      }else {
+        $profile->ProfilePic_Path = $request->file('ProfilePic_Path')->store('products');
+      }
+      $hasil = $profile->save();
+      return $hasil;
     }
 
     function getProfileAll()
     {
-      $res =  DB::table('profile')->get();  
-      return Response::json($res);
+      $hasil =  profile::all();
+      return $hasil;
     }
 
     function getProfileIdUser($id)
     {
-      $res = DB::table('profile')->where('IdUser', $id)->get();
-      return Response::json($res);
+      $hasil =  profile::select("*")
+                        ->where('IdUser', $id)
+                        ->get();
+      return $hasil;
     }
 
     function getDeleteProfileID($id)
     {
-      $res = DB::table('profile')->where('IdUser', $id)->delete();
-      return Response::json($res);
+       $hasil =  profile::select("*")
+                        ->where('IdUser', $id)
+                        ->delete();
+      return $hasil;
     }
 }

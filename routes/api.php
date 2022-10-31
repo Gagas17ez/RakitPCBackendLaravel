@@ -40,6 +40,7 @@ Route::middleware(['cors'])->group(function () {
     Route::post('/Forum/Upload',[PostController::class,'postSavePost']);
     Route::get('/Forum/List',[PostController::class,'getPost']);
     Route::get('/Forum/List/{id}',[PostController::class,'getPostID']);
+    Route::get('/Forum/List/User/{id}',[PostController::class,'getPostUserID']);
     Route::get('/Forum/Delete/{id}',[PostController::class,'getDeletePostID']);
 
     Route::post('/Profile/Upload',[ProfileController::class,'postSaveProfile']);
@@ -50,6 +51,7 @@ Route::middleware(['cors'])->group(function () {
     Route::post('/Comment/Upload',[CommentController::class,'postSaveComment']);
     Route::get('/Comment/List',[CommentController::class,'getCommentAll']);
     Route::get('/Comment/{id}',[CommentController::class,'getCommentID']);
+    Route::get('/Comment/Post/{id}',[CommentController::class,'getCommentPostID']);
     Route::get('/Comment/Delete/{id}',[CommentController::class,'getDeleteCommentID']);
 
     Route::get('/SimpanBuild/All',[SimpanBuildController::class,'getBuildAll']);

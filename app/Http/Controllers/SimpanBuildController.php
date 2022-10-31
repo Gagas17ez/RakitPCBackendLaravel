@@ -29,7 +29,6 @@ class SimpanBuildController extends Controller
             'IdFan3' => 'required|max:200',
         ]);
 
-        $waktu = time();
         $SimpanBuild = new simpanBuild;
         
         $SimpanBuild->IdUser = $request->IdUser;
@@ -51,7 +50,6 @@ class SimpanBuildController extends Controller
         $SimpanBuild->save();
     }
         
-
     public function getBuildID($IdUser){
         $hasil =  simpanBuild::select("*")
                         ->where('idUser', $IdUser)
@@ -61,6 +59,20 @@ class SimpanBuildController extends Controller
 
     public function getBuildAll(){
         $hasil =  simpanBuild::all();
+        return $hasil;
+    }
+
+    public function getBuildDelete($IdSimpan){
+        $hasil =  simpanBuild::select("*")
+                        ->where('IdSimpan', $IdSimpan)
+                        ->delete();
+        return $hasil;
+    }
+
+    public function getBuildDeleteKabehSakUser($IdUser){
+        $hasil =  simpanBuild::select("*")
+                        ->where('IdUser', $IdUser)
+                        ->delete();
         return $hasil;
     }
 }
