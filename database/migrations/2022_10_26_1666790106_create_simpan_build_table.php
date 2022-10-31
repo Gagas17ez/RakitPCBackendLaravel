@@ -13,7 +13,6 @@ class CreateSimpanBuildTable extends Migration
 		$table->integer('IdUser');
 		$table->integer('Compatible');
 		$table->integer('Harga');
-		$table->string('Waktu',200);
 		$table->integer('IdCasing');
 		$table->integer('IdCpu');
 		$table->integer('IdCpuCooler');

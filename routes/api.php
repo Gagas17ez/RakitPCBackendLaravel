@@ -50,6 +50,11 @@ Route::middleware(['cors'])->group(function () {
     Route::get('/Comment/List',[CommentController::class,'getCommentAll']);
     Route::get('/Comment/{id}',[CommentController::class,'getCommentID']);
     Route::get('/Comment/Delete/{id}',[CommentController::class,'getDeleteCommentID']);
+
+    Route::get('/SimpanBuild/All',[SimpanBuildController::class,'getBuildAll']);
+    Route::post('/SimpanBuild/Upload',[SimpanBuildController::class,'postSaveBuild']);
+    Route::get('/SimpanBuild/{id}',[SimpanBuildController::class,'getSimpanID']);
+    Route::get('/SimpanBuild/Delete/{id}',[SimpanBuildController::class,'getDeleteCommentID']);
 });
 
 Route::get('Casing/All',[CasingController::class,'getCasing']);

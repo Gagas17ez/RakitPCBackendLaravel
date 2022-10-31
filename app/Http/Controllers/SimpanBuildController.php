@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Redirect,Response,File;
 use App\Models\simpanBuild;
 
 class SimpanBuildController extends Controller
 {
-    public function store(Request $request){
+    public function postSaveBuild(Request $request){
         $this->validate($request, [
             'IdUser' => 'required|max:200',
             'Compatible' => 'required|max:200',
             'Harga' => 'required|max:200',
-            'Waktu' => 'required|max:200',
             'IdCasing' => 'required|max:200',
             'IdCpu' => 'required|max:200',
             'IdCpuCooler' => 'required|max:200',
@@ -34,7 +35,6 @@ class SimpanBuildController extends Controller
         $SimpanBuild->IdUser = $request->IdUser;
         $SimpanBuild->Compatible = $request->Compatible;
         $SimpanBuild->Harga = $request->Harga;
-        $SimpanBuild->Waktu = $waktu;
         $SimpanBuild->IdCasing = $request->IdCasing;
         $SimpanBuild->IdCpu = $request->IdCpu;
         $SimpanBuild->IdCpuCooler = $request->IdCpuCooler;
@@ -52,10 +52,15 @@ class SimpanBuildController extends Controller
     }
         
 
-    public function getSimpanID($IdUser){
+    public function getBuildID($IdUser){
         $hasil =  simpanBuild::select("*")
                         ->where('idUser', $IdUser)
                         ->get();
+        return $hasil;
+    }
+
+    public function getBuildAll(){
+        $hasil =  simpanBuild::all();
         return $hasil;
     }
 }
