@@ -13,7 +13,6 @@ class PostController extends Controller
   
     function postSavePost(Request $request)
     {
-      $idPost = $request->input('idPost');
       $JudulPost = $request->input('JudulPost');
       $IsiPost = $request->input('IsiPost');
       $idPengepost = $request->input('IdPengepost');
@@ -28,7 +27,6 @@ class PostController extends Controller
       }
       
       DB::table('forum_post')->insert([
-            'IdPost' =>  $idPost,
             'JudulPost'=> $JudulPost,
             'IsiPost'=> $IsiPost ,
             'IdPengepost'=> $idPengepost,
