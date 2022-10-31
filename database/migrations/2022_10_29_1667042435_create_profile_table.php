@@ -15,7 +15,7 @@ class CreateProfileTable extends Migration
 		$table->string('TipeUser',200);
 		$table->string('ProfilePic_Path',200)->nullable()->default('0');
 		$table->string('Kelamin',200);
-		$table->string('TglLahir',200);
+		$table->string('Profesi',200);
         $table->timestamps();
         });
     }
