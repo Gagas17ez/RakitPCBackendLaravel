@@ -53,11 +53,6 @@ Route::middleware(['cors'])->group(function () {
     Route::get('/Comment/{id}',[CommentController::class,'getCommentID']);
     Route::get('/Comment/Post/{id}',[CommentController::class,'getCommentPostID']);
     Route::get('/Comment/Delete/{id}',[CommentController::class,'getDeleteCommentID']);
-
-    Route::get('/SimpanBuild/All',[SimpanBuildController::class,'getBuildAll']);
-    Route::post('/SimpanBuild/Upload',[SimpanBuildController::class,'postSaveBuild']);
-    Route::get('/SimpanBuild/{id}',[SimpanBuildController::class,'getSimpanID']);
-    Route::get('/SimpanBuild/Delete/{id}',[SimpanBuildController::class,'getDeleteCommentID']);
 });
 
 Route::get('Casing/All',[CasingController::class,'getCasing']);
@@ -112,4 +107,7 @@ Route::get('Mouse/All',[MouseController::class,'getMouse']);
 Route::post('Mouse/Filter',[MouseController::class,'PostMouseFilter']);
 Route::get('Mouse/{id}',[MouseController::class,'getMouseID']);
 
-
+Route::get('SimpanBuild/All',[SimpanBuildController::class,'getBuildAll']);
+Route::post('SimpanBuild/Upload',[SimpanBuildController::class,'postSaveBuild']);
+Route::get('SimpanBuild/{id}',[SimpanBuildController::class,'getBuildID']);
+Route::get('SimpanBuild/Delete/{id}',[SimpanBuildController::class,'getBuildDelete']);

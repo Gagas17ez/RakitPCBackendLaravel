@@ -1,15 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Redirect,Response,File;
 use App\Models\simpanBuild;
 
-class SimpanBuildController extends Controller
+class simpanBuildController extends Controller
 {
-    public function postSaveBuild(Request $request){
+    public function postSaveBuild(Request $request)
+    {
         $this->validate($request, [
             'IdUser' => 'required|max:200',
             'Compatible' => 'required|max:200',
@@ -26,28 +26,31 @@ class SimpanBuildController extends Controller
             'IdVga' => 'required|max:200',
             'IdFan1' => 'required|max:200',
             'IdFan2' => 'required|max:200',
-            'IdFan3' => 'required|max:200',
+            'IdFan3' => 'required|max:200'
         ]);
 
-        $SimpanBuild = new simpanBuild;
+        $datesaiki = date('Y-m-d H:i:s');
+        $simpanBuild = new simpanBuild;
         
-        $SimpanBuild->IdUser = $request->IdUser;
-        $SimpanBuild->Compatible = $request->Compatible;
-        $SimpanBuild->Harga = $request->Harga;
-        $SimpanBuild->IdCasing = $request->IdCasing;
-        $SimpanBuild->IdCpu = $request->IdCpu;
-        $SimpanBuild->IdCpuCooler = $request->IdCpuCooler;
-        $SimpanBuild->IdMotherboard = $request->IdMotherboard;
-        $SimpanBuild->IdPsu = $request->IdPsu;
-        $SimpanBuild->IdRam1 = $request->IdRam1;
-        $SimpanBuild->IdRam2 = $request->IdRam2;
-        $SimpanBuild->IdStorage1 = $request->IdStorage1;
-        $SimpanBuild->IdStorage2 = $request->IdStorage2;
-        $SimpanBuild->IdVga = $request->IdVga;
-        $SimpanBuild->IdFan1 = $request->IdFan1;
-        $SimpanBuild->IdFan2 = $request->IdFan2;
-        $SimpanBuild->IdFan3 = $request->IdFan3;
-        $SimpanBuild->save();
+        $simpanBuild->NamaBuild = $datesaiki;
+        $simpanBuild->IdUser = $request->IdUser;
+        $simpanBuild->Compatible = $request->Compatible;
+        $simpanBuild->Harga = $request->Harga;
+        $simpanBuild->IdCasing = $request->IdCasing;
+        $simpanBuild->IdCpu = $request->IdCpu;
+        $simpanBuild->IdCpuCooler = $request->IdCpuCooler;
+        $simpanBuild->IdMotherboard = $request->IdMotherboard;
+        $simpanBuild->IdPsu = $request->IdPsu;
+        $simpanBuild->IdRam1 = $request->IdRam1;
+        $simpanBuild->IdRam2 = $request->IdRam2;
+        $simpanBuild->IdStorage1 = $request->IdStorage1;
+        $simpanBuild->IdStorage2 = $request->IdStorage2;
+        $simpanBuild->IdVga = $request->IdVga;
+        $simpanBuild->IdFan1 = $request->IdFan1;
+        $simpanBuild->IdFan2 = $request->IdFan2;
+        $simpanBuild->IdFan3 = $request->IdFan3;
+        $hasil = $simpanBuild->save();
+        return $hasil;
     }
         
     public function getBuildID($IdUser){

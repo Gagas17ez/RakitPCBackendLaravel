@@ -16,10 +16,10 @@ class simpanBuild extends Model
      * @var array $fillable
      */
     protected $fillable = [
+        'NamaBuild',
         'IdUser',
         'Compatible',
         'Harga',
-        'Waktu',
         'IdCasing',
         'IdCpu',
         'IdCpuCooler',

@@ -10,6 +10,7 @@ class CreateSimpanBuildTable extends Migration
     {
         Schema::create('simpan_build', function (Blueprint $table) {
 		$table->bigIncrements('IdSimpan');
+		$table->string('NamaBuild',200);
 		$table->integer('IdUser');
 		$table->integer('Compatible');
 		$table->integer('Harga');
