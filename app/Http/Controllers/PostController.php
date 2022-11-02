@@ -57,7 +57,7 @@ class PostController extends Controller
     function getPostUserID($id)
     {
       $hasil =  forumPost::select("*")
-                        ->where('IdUser', $id)
+                        ->where('IdPengepost', $id)
                         ->get();
       return $hasil;
     }
