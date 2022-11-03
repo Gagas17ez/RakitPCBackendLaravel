@@ -1,19 +1,20 @@
 <?php
  
 namespace App\Http\Controllers;
- 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Redirect,Response,File;
+use Redirect,Response;
 use App\Models\forumPost;
- 
+use App\Gambar;
 use Illuminate\Support\Facades\Storage;
- 
+use Illuminate\Support\Facades\File; 
 class PostController extends Controller
 {
     function postSavePost(Request $request)
     {
-      $this->validate($request, [
+      try {
+      $request->validate([
         'JudulPost' => 'required|max:200',
         'TipePost' => 'required|max:200',
         'IsiPost' => 'required|max:800',
@@ -39,7 +40,26 @@ class PostController extends Controller
       }
 
       $hasil = $forumPost->save();
-      return $hasil;
+      if ($hasil) {
+        return response($hasil, 200 );
+      }else {
+        return response($hasil, 400);
+      }
+      
+    } catch (Exception $ellol) {
+      return response("Failed", 400);
+    }
+      
+    }
+
+    function getUpdatePost(Request $request, $id){
+      $request->validate([
+        'JudulPost' => 'required|max:200',
+        'TipePost' => 'required|max:200',
+        'IsiPost' => 'required|max:800',
+        'img_path' => 'required'
+      ]);
+      
     }
 
     function getTambahLike($id)
@@ -52,35 +72,10 @@ class PostController extends Controller
     function postPostFilter(Request $Request){
       $this->validate($Request, [
         'Filter' => 'required|max:200',
-        'Urutkan' => 'required|max:800',
+        'Sort' => 'required|max:800',
       ]);
       
-      if ($Request->Urutkan == "Terbaru"){
-        if ($Request->Filter == "Pertanyaan") {
-            $Return = forumPost::select("*")
-                      ->where('TipePost', 'Pertanyaan')
-                      ->orderBy("created_at")
-                      ->get();
-        }
-        elseif ($Request->Filter == "Diskusi") {
-          $Return = forumPost::select("*")
-                      ->where('TipePost', 'Diskusi')
-                      ->orderBy("created_at")
-                      ->get();
-        }
-        elseif ($Request->Filter == "Review") {
-          $Return = forumPost::select("*")
-                      ->where('TipePost', 'Review')
-                      ->orderBy("created_at")
-                      ->get();
-        }else {
-          $Return = forumPost::select("*")
-                      ->orderBy("created_at")
-                      ->get();
-        }
-        return response($Return, 200);
-      }
-      elseif ($Request->Urutkan == "Terlama"){
+      if ($Request->Sort == "Terbaru"){
         if ($Request->Filter == "Pertanyaan") {
             $Return = forumPost::select("*")
                       ->where('TipePost', 'Pertanyaan')
@@ -105,7 +100,32 @@ class PostController extends Controller
         }
         return response($Return, 200);
       }
-      elseif ($Request->Urutkan == "0"){
+      elseif ($Request->Sort == "Terlama"){
+        if ($Request->Filter == "Pertanyaan") {
+            $Return = forumPost::select("*")
+                      ->where('TipePost', 'Pertanyaan')
+                      ->orderBy("created_at")
+                      ->get();
+        }
+        elseif ($Request->Filter == "Diskusi") {
+          $Return = forumPost::select("*")
+                      ->where('TipePost', 'Diskusi')
+                      ->orderBy("created_at")
+                      ->get();
+        }
+        elseif ($Request->Filter == "Review") {
+          $Return = forumPost::select("*")
+                      ->where('TipePost', 'Review')
+                      ->orderBy("created_at")
+                      ->get();
+        }else {
+          $Return = forumPost::select("*")
+                      ->orderBy("created_at")
+                      ->get();
+        }
+        return response($Return, 200);
+      }
+      elseif ($Request->Sort == "0"){
         if ($Request->Filter == "Pertanyaan") {
             $Return = forumPost::select("*")
                       ->where('TipePost', 'Pertanyaan')
@@ -153,9 +173,17 @@ class PostController extends Controller
 
     function getDeletePostID($id)
     {
+      $gambar = forumPost::select("img_path")
+                        ->where('idPost',$id)
+                        ->first();
+
       $hasil =  forumPost::select("*")
                         ->where('IdPost', $id)
                         ->delete();
+
+      
+      \File::delete(public_path($gambar->img_path));
+         
       return $hasil;
     }
 }
