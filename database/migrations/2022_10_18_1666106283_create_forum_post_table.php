@@ -11,6 +11,7 @@ class CreateForumpostTable extends Migration
         Schema::create('forum_post', function (Blueprint $table) {
 		$table->bigIncrements('IdPost');
 		$table->string('JudulPost',200);
+        $table->string('TipePost',200);
 		$table->string('IsiPost',200);
 		$table->integer('IdPengepost');
 		$table->string('NamaPengepost',200);

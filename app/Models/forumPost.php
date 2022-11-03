@@ -14,6 +14,7 @@ class forumPost extends Model
      */
     protected $fillable = [
         'JudulPost',
+        'TipePost',
         'IsiPost',
         'IdPengepost',
         'NamaPengepost',
