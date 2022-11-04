@@ -15,11 +15,11 @@ class PostController extends Controller
     {
       try {
       $request->validate([
-        'JudulPost' => 'required|max:200',
-        'TipePost' => 'required|max:200',
+        'JudulPost' => 'required|max:100',
+        'TipePost' => 'required|max:100',
         'IsiPost' => 'required|max:800',
-        'IdPengepost' => 'required|max:200',
-        'NamaPengepost' => 'required|max:200',
+        'IdPengepost' => 'required|max:100',
+        'NamaPengepost' => 'required|max:100',
         'img_path' => 'required'
       ]);
       
@@ -41,7 +41,7 @@ class PostController extends Controller
 
       $hasil = $forumPost->save();
       if ($hasil) {
-        return response($hasil, 200 );
+        return response($hasil, 100 );
       }else {
         return response($hasil, 400);
       }
@@ -54,8 +54,8 @@ class PostController extends Controller
 
     function getUpdatePost(Request $request, $id){
       $request->validate([
-        'JudulPost' => 'required|max:200',
-        'TipePost' => 'required|max:200',
+        'JudulPost' => 'required|max:100',
+        'TipePost' => 'required|max:100',
         'IsiPost' => 'required|max:800',
         'img_path' => 'required'
       ]);
@@ -71,7 +71,7 @@ class PostController extends Controller
 
     function postPostFilter(Request $Request){
       $this->validate($Request, [
-        'Filter' => 'required|max:200',
+        'Filter' => 'required|max:100',
         'Sort' => 'required|max:800',
       ]);
       
@@ -80,68 +80,79 @@ class PostController extends Controller
             $Return = forumPost::select("*")
                       ->where('TipePost', 'Pertanyaan')
                       ->orderByDesc("created_at")
-                      ->get();
+                      ->get()
+                      ->paginate(10);
         }
         elseif ($Request->Filter == "Diskusi") {
           $Return = forumPost::select("*")
                       ->where('TipePost', 'Diskusi')
                       ->orderByDesc("created_at")
-                      ->get();
+                      ->get()
+                      ->paginate(10);
         }
         elseif ($Request->Filter == "Review") {
           $Return = forumPost::select("*")
                       ->where('TipePost', 'Review')
                       ->orderByDesc("created_at")
-                      ->get();
+                      ->get()
+                      ->paginate(10);
         }else {
           $Return = forumPost::select("*")
                       ->orderByDesc("created_at")
-                      ->get();
+                      ->get()
+                      ->paginate(10);
         }
-        return response($Return, 200);
+        return response($Return, 100);
       }
       elseif ($Request->Sort == "Terlama"){
         if ($Request->Filter == "Pertanyaan") {
             $Return = forumPost::select("*")
                       ->where('TipePost', 'Pertanyaan')
                       ->orderBy("created_at")
-                      ->get();
+                      ->get()
+                      ->paginate(10);
         }
         elseif ($Request->Filter == "Diskusi") {
           $Return = forumPost::select("*")
                       ->where('TipePost', 'Diskusi')
                       ->orderBy("created_at")
-                      ->get();
+                      ->get()
+                      ->paginate(10);
         }
         elseif ($Request->Filter == "Review") {
           $Return = forumPost::select("*")
                       ->where('TipePost', 'Review')
                       ->orderBy("created_at")
-                      ->get();
+                      ->get()
+                      ->paginate(10);
         }else {
           $Return = forumPost::select("*")
                       ->orderBy("created_at")
-                      ->get();
+                      ->get()
+                      ->paginate(10);
         }
-        return response($Return, 200);
+        return response($Return, 100);
       }
       elseif ($Request->Sort == "0"){
         if ($Request->Filter == "Pertanyaan") {
             $Return = forumPost::select("*")
                       ->where('TipePost', 'Pertanyaan')
-                      ->get();
+                      ->get()
+                      ->paginate(10);
         }
         elseif ($Request->Filter == "Diskusi") {
           $Return = forumPost::select("*")
                       ->where('TipePost', 'Diskusi')
-                      ->get();
+                      ->get()
+                      ->paginate(10);
         }
         elseif ($Request->Filter == "Review") {
           $Return = forumPost::select("*")
                       ->where('TipePost', 'Review')
-                      ->get();
+                      ->get()
+                      ->paginate(10);
         }
-        return response($Return, 200);
+        return response($Return, 100);
       }else {
         return response(400);
       }
@@ -150,7 +161,7 @@ class PostController extends Controller
     function getPost()
     {
       $hasil =  forumPost::all();
-      return response($hasil, 200);
+      return response($hasil, 100);
       
     }
 
@@ -158,7 +169,8 @@ class PostController extends Controller
     {
       $hasil =  forumPost::select("*")
                   ->where('IdPost', $id)
-                  ->get();
+                  ->get()
+                      ->paginate(10);
 
       return $hasil;
     }
@@ -167,7 +179,8 @@ class PostController extends Controller
     {
       $hasil =  forumPost::select("*")
                         ->where('IdPengepost', $id)
-                        ->get();
+                        ->get()
+                      ->paginate(10);
       return $hasil;
     }
 
