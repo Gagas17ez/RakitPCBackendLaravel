@@ -52,14 +52,40 @@ class PostController extends Controller
       
     }
 
-    function getUpdatePost(Request $request, $id){
+    function getUpdatePost(Request $request){
       $request->validate([
+        'IdPost' => 'required|max:200',
         'JudulPost' => 'required|max:200',
         'TipePost' => 'required|max:200',
         'IsiPost' => 'required|max:800',
         'img_path' => 'required'
       ]);
+
+      $gambar = forumPost::select("img_path")
+                        ->where('idPost', $request->idPost)
+                        ->first();
       
+      \File::delete(public_path($gambar->img_path));
+    
+      $hasil = forumPost::where('IdPost', $request->idPost)->update([
+        'JudulPost'=> $request->JudulPost,
+        'TipePost'=> $request->TipePost,
+        'IsiPost'=> $request->IsiPost,
+        'img_path'=> $request->img_path,
+      ]);
+      
+      $check = $request->file('img_path');
+      if ($check == 0){
+        $forumPost->img_path = "0";
+      }else {
+        $forumPost->img_path = $request->file('img_path')->store('products');
+      }
+
+      if ($hasil) {
+        return response($hasil, 200 );
+      }else {
+        return response($hasil, 400);
+      }
     }
 
     function getTambahLike($id)
