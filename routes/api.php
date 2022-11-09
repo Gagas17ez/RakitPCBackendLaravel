@@ -48,6 +48,7 @@ Route::middleware(['cors'])->group(function () {
     Route::post('/Profile/Upload',[ProfileController::class,'postSaveProfile']);
     Route::get('/Profile/List',[ProfileController::class,'getProfileAll']);
     Route::get('/Profile/{id}',[ProfileController::class,'getProfileIdUser']);
+    Route::get('/Profile/Check/{id}',[ProfileController::class,'getCheckDuweProfile']);
     Route::get('/Profile/Delete/{id}',[ProfileController::class,'getDeleteProfileID']);
 
     Route::post('/Comment/Upload',[CommentController::class,'postSaveComment']);

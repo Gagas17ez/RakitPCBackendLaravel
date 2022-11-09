@@ -37,6 +37,14 @@ class ProfileController extends Controller
       return $hasil;
     }
 
+    function getCheckDuweProfile($id){
+      if (profile::where('IdUser', $id)->exists()) {
+        return 1;
+      }else{
+        return 0;
+      }
+    }
+
     function getProfileAll()
     {
       $hasil =  profile::all();
