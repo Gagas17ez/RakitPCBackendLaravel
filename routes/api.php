@@ -46,6 +46,7 @@ Route::middleware(['cors'])->group(function () {
     Route::get('/Forum/Delete/{id}',[PostController::class,'getDeletePostID']);
 
     Route::post('/Profile/Upload',[ProfileController::class,'postSaveProfile']);
+    Route::post('/Profile/Update',[ProfileController::class,'postUpdateProfile']);
     Route::get('/Profile/List',[ProfileController::class,'getProfileAll']);
     Route::get('/Profile/{id}',[ProfileController::class,'getProfileIdUser']);
     Route::get('/Profile/Check/{id}',[ProfileController::class,'getCheckDuweProfile']);
