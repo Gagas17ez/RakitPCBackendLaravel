@@ -50,19 +50,19 @@ class ProfileController extends Controller
         'ProfilePic_Path' => 'required'
       ]);
 
-      // $gambar = profile::select("ProfilePic_Path")
-      //                   ->where('IdUser', $request->IdUser)
-      //                   ->first();
+      $gambar = profile::select("ProfilePic_Path")
+                        ->where('IdUser', $request->IdUser)
+                        ->first();
 
-      // \File::delete(public_path($gambar->ProfilePic_Path));
+      \File::delete(public_path($gambar->ProfilePic_Path));
 
-      // $check = $request->file('ProfilePic_Path');
+      $check = $request->file('ProfilePic_Path');
       
-      // if ($check == 0){
-      //   $request->ProfilePic_Path = "0";
-      // }else {
-      $request->ProfilePic_Path = $request->file('ProfilePic_Path')->store('products');
-      // }
+      if ($check == 0){
+        $request->ProfilePic_Path = "0";
+      }else {
+        $request->ProfilePic_Path = $request->file('ProfilePic_Path')->store('products');
+      }
 
       $hasil = profile::where('IdUser', $request->IdUser)->update([
         'NamaUser'=> $request->NamaUser,
