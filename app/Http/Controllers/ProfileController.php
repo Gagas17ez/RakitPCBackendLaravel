@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Redirect,Response,File;
+use Redirect,Response;
 use App\Models\profile;
+use App\Gambar;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File; 
 
 class ProfileController extends Controller
 {
     function postSaveProfile(Request $request)
     {
-      $this->validate($request, [
+      $request->validate([
         'IdUser' => 'required|max:200',
         'NamaUser' => 'required|max:800',
         'TipeUser' => 'required|max:200',
@@ -38,7 +41,7 @@ class ProfileController extends Controller
     }
 
     function postUpdateProfile(Request $request){
-      $this->validate($request, [
+      $request->validate([
         'IdUser' => 'required|max:200',
         'NamaUser' => 'required|max:800',
         'TipeUser' => 'required|max:200',
@@ -47,26 +50,26 @@ class ProfileController extends Controller
         'ProfilePic_Path' => 'required'
       ]);
 
-      $gambar = profile::select("ProfilePic_Path")
-                        ->where('IdUser', $request->IdUser)
-                        ->first();
+      // $gambar = profile::select("ProfilePic_Path")
+      //                   ->where('IdUser', $request->IdUser)
+      //                   ->first();
 
-      \File::delete(public_path($gambar->ProfilePic_Path));
+      // \File::delete(public_path($gambar->ProfilePic_Path));
 
-      $check = $request->file('ProfilePic_Path');
+      // $check = $request->file('ProfilePic_Path');
       
-      if ($check == 0){
-        $request->ProfilePic_Path = "0";
-      }else {
-        $request->ProfilePic_Path = $request->file('ProfilePic_Path')->store('products');
-      }
+      // if ($check == 0){
+      //   $request->ProfilePic_Path = "0";
+      // }else {
+      $request->ProfilePic_Path = $request->file('ProfilePic_Path')->store('products');
+      // }
 
       $hasil = profile::where('IdUser', $request->IdUser)->update([
         'NamaUser'=> $request->NamaUser,
         'TipeUser'=> $request->TipeUser,
         'Kelamin'=> $request->Kelamin,
         'Profesi'=> $request->Profesi,
-        'ProfilePic_Path'=> $request->ProfilePic_Path
+        'ProfilePic_Path'=> $request->ProfilePic_Path,
       ]);
       
       if ($hasil) {
