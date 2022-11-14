@@ -13,7 +13,7 @@ class CreateForumpostTable extends Migration
 		$table->string('JudulPost',200);
         $table->string('TipePost',200);
 		$table->string('IsiPost',200);
-		$table->integer('IdPengepost');
+		$table->string('IdPengepost',255);
 		$table->string('NamaPengepost',200);
 		$table->string('img_path',200)->nullable()->default('0');
         $table->integer('Like')->nullable()->default('0');

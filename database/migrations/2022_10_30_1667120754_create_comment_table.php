@@ -12,7 +12,7 @@ class CreateCommentTable extends Migration
 
 		$table->bigIncrements('IdComment');
         $table->integer('IdPostComment');
-		$table->integer('IdPengcomment');
+		$table->string('IdPengcomment',255);
 		$table->string('NamaPengcomment',255);
 		$table->string('IsiComment',255);
 		$table->integer('Like')->nullable()->default('0');
