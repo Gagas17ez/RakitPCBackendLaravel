@@ -39,6 +39,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware(['cors'])->group(function () {
     Route::post('/Forum/Upload',[PostController::class,'postSavePost']);
     Route::post('/Forum/List/Filter',[PostController::class,'postPostFilter']);
+    Route::post('/Forum/Update',[PostController::class,'getUpdatePost']);
     Route::get('/Forum/List',[PostController::class,'getPost']);
     Route::get('/Forum/List/TambahLike/{id}',[PostController::class,'getTambahLike']);
     Route::get('/Forum/List/{id}',[PostController::class,'getPostID']);

@@ -10,7 +10,7 @@ class CreateProfileTable extends Migration
     {
         Schema::create('profile', function (Blueprint $table) {
 		$table->bigIncrements('IdProfile');
-		$table->integer('IdUser');
+		$table->string('IdUser',200);
 		$table->string('NamaUser',200);
 		$table->string('TipeUser',200);
 		$table->string('ProfilePic_Path',200)->nullable()->default('0');

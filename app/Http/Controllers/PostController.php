@@ -8,20 +8,27 @@ use Redirect,Response;
 use App\Models\forumPost;
 use App\Gambar;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
+use App\Http\Requests\PostSaveRequest;
+use Illuminate\Support\Facades\Validator;
+
+
 class PostController extends Controller
 {
     function postSavePost(Request $request)
     {
-      try {
-      $request->validate([
-        'JudulPost' => 'required|max:200',
-        'TipePost' => 'required|max:200',
-        'IsiPost' => 'required|max:800',
-        'IdPengepost' => 'required|max:200',
-        'NamaPengepost' => 'required|max:200',
-        'img_path' => 'required'
+        $validator = Validator::make($request->all(),[
+          'JudulPost' => 'required|max:200',
+          'TipePost' => 'required|max:200',
+          'IsiPost' => 'required|max:800',
+          'IdPengepost' => 'required|max:200',
+          'NamaPengepost' => 'required|max:200',
+          'img_path' => 'required'
       ]);
+
+      if ($validator->fails()) {
+        return response("Gagal", 400);
+      }
       
       $like = 0;
       $forumPost = new forumPost();
@@ -46,10 +53,6 @@ class PostController extends Controller
         return response($hasil, 400);
       }
       
-    } catch (Exception $ellol) {
-      return response("Failed", 400);
-    }
-      
     }
 
     function getUpdatePost(Request $request){
@@ -66,6 +69,14 @@ class PostController extends Controller
                         ->first();
       
       \File::delete(public_path($gambar->img_path));
+
+      $check = $request->file('img_path');
+      
+      if ($check == 0){
+        $forumPost->img_path = "0";
+      }else {
+        $forumPost->img_path = $request->file('img_path')->store('products');
+      }
     
       $hasil = forumPost::where('IdPost', $request->idPost)->update([
         'JudulPost'=> $request->JudulPost,
@@ -73,14 +84,7 @@ class PostController extends Controller
         'IsiPost'=> $request->IsiPost,
         'img_path'=> $request->img_path,
       ]);
-      
-      $check = $request->file('img_path');
-      if ($check == 0){
-        $forumPost->img_path = "0";
-      }else {
-        $forumPost->img_path = $request->file('img_path')->store('products');
-      }
-
+    
       if ($hasil) {
         return response($hasil, 200 );
       }else {
