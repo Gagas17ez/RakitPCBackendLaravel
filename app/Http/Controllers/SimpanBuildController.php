@@ -81,7 +81,7 @@ class simpanBuildController extends Controller
         return $hasil;
     }
         
-    public function getBuildID($IdUser){
+    public function getBuildIDUser($IdUser){
         $hasil =  simpanBuild::select("*")
                         ->where('idUser', $IdUser)
                         ->get();

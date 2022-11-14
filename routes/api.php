@@ -114,5 +114,6 @@ Route::get('Mouse/{id}',[MouseController::class,'getMouseID']);
 
 Route::get('SimpanBuild/All',[SimpanBuildController::class,'getBuildAll']);
 Route::post('SimpanBuild/Upload',[SimpanBuildController::class,'postSaveBuild']);
-Route::get('SimpanBuild/{id}',[SimpanBuildController::class,'getBuildID']);
+Route::get('SimpanBuild/User/{id}',[SimpanBuildController::class,'getBuildIDUser']);
+Route::get('SimpanBuild/{id}',[SimpanBuildController::class,'getBuildIDBuild']);
 Route::get('SimpanBuild/Delete/{id}',[SimpanBuildController::class,'getBuildDelete']);
